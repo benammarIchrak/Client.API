@@ -1,0 +1,29 @@
+name: publish🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    -  master
+
+jobs:
+  publish:
+    run-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.X''
+
+      - name: Restore
+        run: dotnet restore ./Clients.sln
+
+      - name: Build
+        run: dotnet build ./Clients.sln --configuration Release --no-restore
+
+        - name: Publish
+          run: dotnet publish ./Clients.sln --configuration Release --no-build
+        
