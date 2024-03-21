@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -16,7 +16,7 @@ jobs:
       - name: setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.X'
+          dotnet-version: '6.0.x'
 
       - name: Restore
         run: dotnet restore ./Clients.sln
@@ -24,6 +24,6 @@ jobs:
       - name: Build
         run: dotnet build ./Clients.sln --configuration Release --no-restore
 
-        - name: Publish
-          run: dotnet publish ./Clients.sln --configuration Release --no-build
+      - name: Publish
+        run: dotnet publish ./Clients.sln --configuration Release --no-build
         
