@@ -2,6 +2,7 @@ using Client.API.Middlewares;
 using Client.Application;
 using Client.Business.Interfaces;
 using Client.Infrastracture.Repositories;
+using System.Net.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/ichrak", () => "Hello ichraaak!");
+app.MapPost("/put", (string name) =>"msg recieved" + name);
 
 //app.Run(async context =>
 //{
